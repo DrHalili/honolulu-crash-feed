@@ -1,0 +1,212 @@
+{
+  "updatedAt": "2026-09-05T11:30:00Z",
+  "timezone": "Pacific/Honolulu",
+  "crashes": [
+    {
+      "id": "2026-09-05-waianae-farrington-hitrun",
+      "title": "Serious hit-and-run on Farrington Highway in Waianae",
+      "summary": "An unidentified westbound motorist struck a 57-year-old female pedestrian near Waianae Valley Road and fled without stopping. The pedestrian was taken to an area hospital in serious condition. HPD Vehicular Homicide Section is investigating.",
+      "location": "Farrington Highway near Waianae Valley Road, Waianae",
+      "area": "Waianae",
+      "severity": "serious",
+      "crashTime": "2026-09-05T06:58:00Z",
+      "crashTimeHst": "Sep 4, 2026 · 8:58 PM HST",
+      "publishedAt": "2026-09-05T11:03:00Z",
+      "publishedAtHst": "Sep 5, 2026 · 1:03 AM HST",
+      "newsLinks": [
+        {
+          "label": "Honolulu Police Department",
+          "url": "https://www.honolulupd.org/traffic-media/serious-hit-run-motor-vehicle-collision-47/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "name": "Honolulu Police Department",
+          "credit": "HPD Traffic Division, Vehicular Homicide Section"
+        }
+      ],
+      "tags": ["hit-and-run", "pedestrian", "waianae", "farrington"]
+    },
+    {
+      "id": "2026-09-04-h1-waiawa-dump-truck",
+      "title": "H-1 eastbound dump truck lodged under Waiawa overpass",
+      "summary": "A dump truck traveling east on the H-1 Freeway struck the Waiawa overpass around 1:08 p.m., lodging its trailer under the bridge. Another vehicle struck debris. No injuries reported. Lanes reopened by about 4:30 p.m. after heavy eastbound gridlock near the H-1/H-2 merge.",
+      "location": "H-1 Freeway eastbound at Waiawa overpass",
+      "area": "Pearl City / Waiawa",
+      "severity": "traffic",
+      "crashTime": "2026-09-04T23:08:00Z",
+      "crashTimeHst": "Sep 4, 2026 · 1:08 PM HST",
+      "publishedAt": "2026-09-04T23:55:00Z",
+      "publishedAtHst": "Sep 4, 2026 · 1:55 PM HST",
+      "newsLinks": [
+        {
+          "label": "Hawaii News Now",
+          "url": "https://www.hawaiinewsnow.com/2026/09/04/h-1-eastbound-traffic-gridlocked-after-waiawa-overpass-crash/"
+        },
+        {
+          "label": "Honolulu Police Department",
+          "url": "https://www.honolulupd.org/hpd-advises-public-to-take-alternate-routes-following-motor-vehicle-collision-near-h-1-waiawa-overpass/"
+        }
+      ],
+      "instagramLinks": [
+        {
+          "label": "@hawaiinewsnow",
+          "url": "https://www.instagram.com/p/Dc4pTkCFRi4/"
+        },
+        {
+          "label": "@kitv4",
+          "url": "https://www.instagram.com/p/Dc41LU1jbW1/",
+          "note": "via @808buzz"
+        },
+        {
+          "label": "@staradvertiser",
+          "url": "https://www.instagram.com/p/Dc4y5nAjMUc/"
+        }
+      ],
+      "sources": [
+        {
+          "name": "Hawaii News Now",
+          "credit": "Photo/video: Moesolo Upuese Tagovailoa"
+        },
+        {
+          "name": "Honolulu Police Department",
+          "credit": "HPD advisory"
+        },
+        {
+          "name": "Hawaii DOT",
+          "credit": "@DOTHawaii traffic update"
+        }
+      ],
+      "tags": ["h-1", "waiawa", "dump-truck", "traffic"]
+    },
+    {
+      "id": "2026-09-04-university-ave-motorcycle-pedestrian",
+      "title": "Pedestrian seriously injured by motorcycle on University Avenue",
+      "summary": "A 22-year-old female pedestrian was struck by a motorcycle while crossing at University Avenue and South King Street. Honolulu EMS treated her on scene and continued care en route for serious trauma, including facial injuries.",
+      "location": "University Avenue & South King Street, Moiliili",
+      "area": "Moiliili",
+      "severity": "serious",
+      "crashTime": "2026-09-04T10:17:00Z",
+      "crashTimeHst": "Sep 4, 2026 · 12:17 AM HST",
+      "publishedAt": "2026-09-04T19:45:00Z",
+      "publishedAtHst": "Sep 4, 2026 · 9:45 AM HST",
+      "newsLinks": [
+        {
+          "label": "Hawaii News Now",
+          "url": "https://www.hawaiinewsnow.com/2026/09/04/pedestrian-seriously-injured-by-motorcycle-university-avenue/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "name": "Hawaii News Now",
+          "credit": "Honolulu EMS"
+        }
+      ],
+      "tags": ["motorcycle", "pedestrian", "university-avenue", "moiliili"]
+    },
+    {
+      "id": "2026-09-03-kaneohe-bay-drive-rollover",
+      "title": "Two seriously injured in Kaneohe Bay Drive rollover",
+      "summary": "A 21-year-old male driver and 21-year-old male passenger sustained serious injuries in a single-vehicle rollover. Honolulu EMS responded with multiple units to the 190–298 block of Kaneohe Bay Drive and transported both to local emergency rooms.",
+      "location": "190–298 Kaneohe Bay Drive, Kaneohe",
+      "area": "Kaneohe",
+      "severity": "serious",
+      "crashTime": "2026-09-04T08:22:00Z",
+      "crashTimeHst": "Sep 3, 2026 · 10:22 PM HST",
+      "publishedAt": "2026-09-04T19:28:00Z",
+      "publishedAtHst": "Sep 4, 2026 · 9:28 AM HST",
+      "newsLinks": [
+        {
+          "label": "Hawaii News Now",
+          "url": "https://www.hawaiinewsnow.com/2026/09/04/2-seriously-injured-rollover-crash-kaneohe/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "name": "Hawaii News Now",
+          "credit": "Ancheta, Dillon | HNN"
+        }
+      ],
+      "tags": ["rollover", "kaneohe", "kaneohe-bay-drive"]
+    },
+    {
+      "id": "2026-09-03-kahekili-likelike-pickup-rollover",
+      "title": "Pickup rollover at Kahekili and Likelike highways",
+      "summary": "A 23-year-old male pickup truck driver was hospitalized in serious condition after striking a highway median and rolling onto its top near Kahekili Highway and Likelike Highway. Honolulu EMS treated the driver for multiple injuries around 10:15 p.m.",
+      "location": "Kahekili Highway & Likelike Highway, Kaneohe",
+      "area": "Kaneohe",
+      "severity": "serious",
+      "crashTime": "2026-09-04T08:15:00Z",
+      "crashTimeHst": "Sep 3, 2026 · 10:15 PM HST",
+      "publishedAt": "2026-09-04T19:00:00Z",
+      "publishedAtHst": "Sep 4, 2026 · 9:00 AM HST",
+      "newsLinks": [
+        {
+          "label": "Hawaii News Now",
+          "url": "https://www.hawaiinewsnow.com/2026/09/04/driver-hospitalized-after-pickup-truck-rolls-over-kahekili-likelike-highways/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "name": "Hawaii News Now",
+          "credit": "HNN Staff"
+        }
+      ],
+      "tags": ["rollover", "pickup", "kahekili", "likelike", "kaneohe"]
+    },
+    {
+      "id": "2026-09-01-mccully-bingham-fatal-rollover",
+      "title": "Fatal rollover on Bingham Street in McCully",
+      "summary": "A vehicle carrying four occupants sideswiped a parked car on Bingham Street near McCully around 11:50 p.m., overturned, and struck a fire hydrant. The 26-year-old driver later died; a 25-year-old passenger was critically injured. HFD extricated two occupants. Oahu’s 26th traffic fatality of 2026.",
+      "location": "1900 block of Bingham Street, McCully",
+      "area": "McCully",
+      "severity": "fatal",
+      "crashTime": "2026-09-02T09:50:00Z",
+      "crashTimeHst": "Sep 1, 2026 · 11:50 PM HST",
+      "publishedAt": "2026-09-02T19:26:00Z",
+      "publishedAtHst": "Sep 2, 2026 · 9:26 AM HST",
+      "newsLinks": [
+        {
+          "label": "Hawaii News Now",
+          "url": "https://www.hawaiinewsnow.com/2026/09/02/1-dead-1-critically-injured-rollover-crash-mccully/"
+        },
+        {
+          "label": "Honolulu Star-Advertiser",
+          "url": "https://www.staradvertiser.com/2026/09/02/breaking-news/woman-26-dies-after-mccully-rollover-crash/"
+        },
+        {
+          "label": "KITV Island News",
+          "url": "https://www.kitv.com/news/local/truck-lands-on-hydrant-after-mccully-collision-four-rescued/article_3eff4356-a534-42e2-aa60-e01cbf8ab38a.html"
+        },
+        {
+          "label": "Honolulu Fire Department",
+          "url": "https://fire.honolulu.gov/2026/09/02/occupants-extricated-from-a-motor-vehicle-collision-in-mccully/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "name": "Hawaii News Now",
+          "credit": "HNN Staff"
+        },
+        {
+          "name": "Honolulu Star-Advertiser",
+          "credit": "Photo: Honolulu EMS"
+        },
+        {
+          "name": "KITV",
+          "credit": "Island News"
+        },
+        {
+          "name": "Honolulu Fire Department",
+          "credit": "HFD incident release"
+        }
+      ],
+      "tags": ["fatal", "rollover", "mccully", "bingham"]
+    }
+  ]
+}
