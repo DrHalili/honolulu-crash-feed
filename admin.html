@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — Honolulu Crash Feed</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-body">
+    <header class="admin-header">
+      <div class="admin-wrap" style="padding-top: 0; padding-bottom: 0">
+        <h1>Crash Feed Admin</h1>
+        <p style="margin: 0.35rem 0 0; opacity: 0.9; font-size: 0.95rem">
+          For GitHub Pages: edit <code>data/crashes.json</code> via PR, or download an updated file from this form and commit it.
+          There is no write API on static hosting.
+        </p>
+      </div>
+    </header>
+
+    <div class="admin-wrap">
+      <div class="notice">
+        <strong>Static site note:</strong> GitHub Pages cannot accept POST writes. Paste a GitHub personal access token
+        (optional) into localStorage for curl helpers only — tokens never leave this browser unless you copy a curl
+        command yourself. Prefer downloading JSON and opening a PR.
+      </div>
+
+      <section class="panel">
+        <h2>API key (localStorage)</h2>
+        <p>Stored only in your browser as <code>hcf_api_key</code>. Used to prefill GitHub API curl examples.</p>
+        <label for="apiKey">GitHub token or future API key</label>
+        <input id="apiKey" type="password" autocomplete="off" placeholder="ghp_… or leave blank" />
+        <div class="admin-actions">
+          <button type="button" class="btn btn-primary" id="saveKey">Save to localStorage</button>
+          <button type="button" class="btn btn-danger" id="clearKey">Clear key</button>
+        </div>
+        <p id="keyStatus" class="form-note" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Add a crash</h2>
+        <p>
+          Loads current <code>data/crashes.json</code>, prepends your entry, then lets you download the full updated
+          file. Also regenerates a suggested RSS item snippet and a GitHub Contents API curl.
+        </p>
+        <form id="crashForm">
+          <label for="title">Title</label>
+          <input id="title" required placeholder="e.g. Rollover on Kamehameha Highway in Kaneohe" />
+
+          <label for="summary">Summary</label>
+          <textarea id="summary" required placeholder="Neutral, factual summary from public reports…"></textarea>
+
+          <label for="location">Location</label>
+          <input id="location" required placeholder="Street / intersection, neighborhood" />
+
+          <label for="area">Area</label>
+          <input id="area" placeholder="e.g. Kaneohe" />
+
+          <label for="severity">Severity</label>
+          <select id="severity">
+            <option value="traffic">traffic</option>
+            <option value="serious" selected>serious</option>
+            <option value="fatal">fatal</option>
+          </select>
+
+          <label for="crashTimeHst">Crash time (display, HST)</label>
+          <input id="crashTimeHst" required placeholder="Sep 5, 2026 · 3:00 PM HST" />
+
+          <label for="crashTime">Crash time (ISO UTC)</label>
+          <input id="crashTime" required placeholder="2026-09-06T01:00:00Z" />
+
+          <label for="publishedAtHst">Published time (display, HST)</label>
+          <input id="publishedAtHst" required placeholder="Sep 5, 2026 · 4:00 PM HST" />
+
+          <label for="publishedAt">Published time (ISO UTC)</label>
+          <input id="publishedAt" required placeholder="2026-09-06T02:00:00Z" />
+
+          <label for="newsLinks">News links (one per line: Label | URL)</label>
+          <textarea id="newsLinks" placeholder="Hawaii News Now | https://www.hawaiinewsnow.com/..."></textarea>
+
+          <label for="igLinks">Instagram links (one per line: @handle | URL)</label>
+          <textarea id="igLinks" placeholder="@hawaiinewsnow | https://www.instagram.com/p/xxxxx/"></textarea>
+
+          <label for="sources">Sources / credits (one per line: Name | Credit)</label>
+          <textarea id="sources" placeholder="Hawaii News Now | Photo credit if any"></textarea>
+
+          <label for="tags">Tags (comma-separated)</label>
+          <input id="tags" placeholder="rollover, kaneohe" />
+
+          <label for="id">ID (slug, optional — auto-generated if blank)</label>
+          <input id="id" placeholder="2026-09-05-area-short-title" />
+
+          <div class="admin-actions">
+            <button type="submit" class="btn btn-primary">Generate &amp; download crashes.json</button>
+            <button type="button" class="btn btn-secondary" id="previewBtn">Preview JSON object</button>
+            <a class="btn btn-secondary" href="index.html" style="text-decoration: none; display: inline-block"
+              >← Back to feed</a
+            >
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Output</h2>
+        <p id="outStatus" class="form-note">Fill the form and generate to see output.</p>
+        <label>New crash object</label>
+        <pre class="code-block" id="outObject">{}</pre>
+        <label>GitHub Pages workflow</label>
+        <ol style="color: var(--ink-muted); font-size: 0.92rem">
+          <li>Download the updated <code>crashes.json</code> (button above triggers download).</li>
+          <li>Replace <code>data/crashes.json</code> in the repo (commit on a branch + PR, or push to <code>main</code>).</li>
+          <li>Optionally update <code>feed.xml</code> to match (or regenerate later with a script).</li>
+          <li>GitHub Pages will republish from root or <code>/docs</code> per your settings.</li>
+        </ol>
+        <label>curl — GitHub Contents API (update file)</label>
+        <p class="form-note">
+          Replace <code>OWNER/REPO</code>, path, and SHA. Get SHA with:
+          <code>curl -s -H "Authorization: Bearer TOKEN" https://api.github.com/repos/OWNER/REPO/contents/data/crashes.json | jq -r .sha</code>
+        </p>
+        <pre class="code-block" id="outCurl"># Generate a crash first to fill this block</pre>
+      </section>
+    </div>
+
+    <script>
+      (() => {
+        const KEY = "hcf_api_key";
+        const apiKeyInput = document.getElementById("apiKey");
+        const keyStatus = document.getElementById("keyStatus");
+        const outObject = document.getElementById("outObject");
+        const outCurl = document.getElementById("outCurl");
+        const outStatus = document.getElementById("outStatus");
+
+        function loadKey() {
+          const v = localStorage.getItem(KEY) || "";
+          apiKeyInput.value = v;
+          keyStatus.textContent = v ? "Key loaded from localStorage." : "No key saved.";
+        }
+
+        document.getElementById("saveKey").addEventListener("click", () => {
+          localStorage.setItem(KEY, apiKeyInput.value.trim());
+          keyStatus.textContent = "Saved to localStorage.";
+        });
+
+        document.getElementById("clearKey").addEventListener("click", () => {
+          localStorage.removeItem(KEY);
+          apiKeyInput.value = "";
+          keyStatus.textContent = "Cleared.";
+        });
+
+        function parseLines(text, sep = "|") {
+          return String(text || "")
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean)
+            .map((line) => {
+              const parts = line.split(sep).map((p) => p.trim());
+              if (parts.length >= 2) {
+                return { label: parts[0], url: parts.slice(1).join(sep).trim() };
+              }
+              return { label: parts[0], url: parts[0] };
+            });
+        }
+
+        function parseSources(text) {
+          return String(text || "")
+            .split("\n")
+            .map((l) => l.trim())
+            .filter(Boolean)
+            .map((line) => {
+              const parts = line.split("|").map((p) => p.trim());
+              return { name: parts[0], credit: parts[1] || "" };
+            });
+        }
+
+        function slugify(title) {
+          const d = new Date();
+          const y = d.toISOString().slice(0, 10);
+          const slug = String(title || "crash")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "")
+            .slice(0, 48);
+          return `${y}-${slug || "crash"}`;
+        }
+
+        function buildCrash() {
+          const title = document.getElementById("title").value.trim();
+          const news = parseLines(document.getElementById("newsLinks").value).map((x) => ({
+            label: x.label,
+            url: x.url,
+          }));
+          const ig = parseLines(document.getElementById("igLinks").value).map((x) => ({
+            label: x.label,
+            url: x.url,
+          }));
+          const tags = document
+            .getElementById("tags")
+            .value.split(",")
+            .map((t) => t.trim())
+            .filter(Boolean);
+          return {
+            id: document.getElementById("id").value.trim() || slugify(title),
+            title,
+            summary: document.getElementById("summary").value.trim(),
+            location: document.getElementById("location").value.trim(),
+            area: document.getElementById("area").value.trim(),
+            severity: document.getElementById("severity").value,
+            crashTime: document.getElementById("crashTime").value.trim(),
+            crashTimeHst: document.getElementById("crashTimeHst").value.trim(),
+            publishedAt: document.getElementById("publishedAt").value.trim(),
+            publishedAtHst: document.getElementById("publishedAtHst").value.trim(),
+            newsLinks: news,
+            instagramLinks: ig,
+            sources: parseSources(document.getElementById("sources").value),
+            tags,
+          };
+        }
+
+        function downloadJson(obj, filename) {
+          const blob = new Blob([JSON.stringify(obj, null, 2) + "\n"], { type: "application/json" });
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = filename;
+          a.click();
+          URL.revokeObjectURL(a.href);
+        }
+
+        function buildCurl(fileContentB64) {
+          const token = localStorage.getItem(KEY) || "YOUR_GITHUB_TOKEN";
+          return `# 1) Get current file SHA
+curl -s -H "Authorization: Bearer ${token}" \\
+  -H "Accept: application/vnd.github+json" \\
+  https://api.github.com/repos/OWNER/REPO/contents/data/crashes.json | jq -r .sha
+
+# 2) Commit updated crashes.json (replace FILE_SHA and base64 payload)
+# Tip: CONTENT_B64=$(base64 -w0 data/crashes.json)
+curl -X PUT \\
+  -H "Authorization: Bearer ${token}" \\
+  -H "Accept: application/vnd.github+json" \\
+  https://api.github.com/repos/OWNER/REPO/contents/data/crashes.json \\
+  -d '{
+    "message": "Add crash report via Crash Bot / admin",
+    "content": "'"${fileContentB64 || "BASE64_OF_UPDATED_crashes.json"}"'",
+    "sha": "FILE_SHA",
+    "branch": "main"
+  }'
+
+# Prefer PR workflow over pushing straight to main when collaborating.`;
+        }
+
+        async function generate(download) {
+          const crash = buildCrash();
+          outObject.textContent = JSON.stringify(crash, null, 2);
+
+          let data;
+          try {
+            const res = await fetch("data/crashes.json", { cache: "no-store" });
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            data = await res.json();
+          } catch (e) {
+            data = { updatedAt: new Date().toISOString(), timezone: "Pacific/Honolulu", crashes: [] };
+            outStatus.textContent =
+              "Could not fetch existing crashes.json (open via http server). Building a new file with this crash only.";
+          }
+
+          data.updatedAt = new Date().toISOString();
+          data.timezone = data.timezone || "Pacific/Honolulu";
+          data.crashes = Array.isArray(data.crashes) ? data.crashes : [];
+          // Prepend newest
+          data.crashes = [crash, ...data.crashes.filter((c) => c.id !== crash.id)];
+
+          const jsonText = JSON.stringify(data, null, 2) + "\n";
+          // Browser-safe base64 for curl hint (may be large — show truncated note)
+          let b64 = "";
+          try {
+            b64 = btoa(unescape(encodeURIComponent(jsonText)));
+          } catch (_) {
+            b64 = "";
+          }
+          outCurl.textContent = buildCurl(b64 && b64.length < 8000 ? b64 : "");
+
+          if (download) {
+            downloadJson(data, "crashes.json");
+            outStatus.textContent =
+              "Downloaded crashes.json (" +
+              data.crashes.length +
+              " crashes). Commit to data/crashes.json and update feed.xml for RSS subscribers.";
+          } else {
+            outStatus.textContent = "Preview ready (" + data.crashes.length + " crashes in merged file).";
+          }
+        }
+
+        document.getElementById("crashForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          generate(true);
+        });
+
+        document.getElementById("previewBtn").addEventListener("click", () => {
+          if (!document.getElementById("crashForm").reportValidity()) return;
+          generate(false);
+        });
+
+        // Sensible defaults for “now”
+        const now = new Date();
+        const hst = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Pacific/Honolulu",
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "2-digit",
+        }).format(now);
+        document.getElementById("publishedAt").value = now.toISOString().replace(/\.\d{3}Z$/, "Z");
+        document.getElementById("publishedAtHst").value = hst + " HST";
+        document.getElementById("crashTime").value = now.toISOString().replace(/\.\d{3}Z$/, "Z");
+        document.getElementById("crashTimeHst").value = hst + " HST";
+
+        loadKey();
+      })();
+    </script>
+  </body>
+</html>
