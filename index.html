@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Honolulu Crash Feed — Oʻahu traffic incident aggregator</title>
+    <meta
+      name="description"
+      content="Clean, shareable feed of publicly reported traffic crashes on Oʻahu. Aggregated from news and official releases. Hawaii Standard Time."
+    />
+    <meta name="theme-color" content="#0a3d5c" />
+    <link rel="alternate" type="application/rss+xml" title="Honolulu Crash Feed RSS" href="feed.xml" />
+    <meta property="og:title" content="Honolulu Crash Feed" />
+    <meta
+      property="og:description"
+      content="Public crash reports for Honolulu / Oʻahu — news links, times in HST, source credits."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to feed</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">🌊</div>
+          <div>
+            <h1>Honolulu Crash Feed</h1>
+            <p class="tagline">
+              Public traffic incident reports for Oʻahu — aggregated from newsrooms and official releases. Times in Hawaii Standard Time (HST).
+            </p>
+          </div>
+        </div>
+        <div class="header-meta">
+          <span class="chip">Oʻahu · HST</span>
+          <span class="chip"><a href="feed.xml">RSS feed</a></span>
+          <span class="chip"><a href="#subscribe">Subscribe</a></span>
+          <span class="chip"><a href="admin.html">Admin</a></span>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="toolbar">
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <label class="visually-hidden" for="search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">
+            Search crashes
+          </label>
+          <input id="search" type="search" placeholder="Search location, area, keywords…" autocomplete="off" />
+        </div>
+        <div class="filters" role="group" aria-label="Filter by severity">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="fatal">Fatal</button>
+          <button type="button" class="filter-btn" data-filter="serious">Serious</button>
+          <button type="button" class="filter-btn" data-filter="traffic">Traffic</button>
+        </div>
+      </div>
+
+      <p id="status" class="status-bar" aria-live="polite">Loading crash reports…</p>
+      <section id="feed" class="feed" aria-label="Crash reports"></section>
+
+      <section class="panel disclaimer" aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">Disclaimer</h2>
+        <p>
+          This site aggregates <strong>publicly reported</strong> traffic incidents from news outlets and official agency
+          releases (HPD, HFD, EMS, HDOT, and others). It is <strong>not</strong> an official government feed, not a
+          substitute for emergency services, and not legal advice. Details may be incomplete or updated later by original
+          sources. Always verify with the linked articles and agencies. Call <strong>911</strong> for emergencies.
+        </p>
+        <p>
+          We aim for a respectful, non-sensational presentation — ocean blues and greens, clear facts, and source credits —
+          not graphic imagery.
+        </p>
+      </section>
+
+      <section id="subscribe" class="panel" aria-labelledby="subscribe-heading">
+        <h2 id="subscribe-heading">Subscribe</h2>
+        <p>Get updates when new crashes are published, or follow the RSS feed in any reader.</p>
+        <form id="subscribe-form" class="subscribe-form" action="#" method="POST">
+          <label class="visually-hidden" for="email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">
+            Email
+          </label>
+          <input id="email" name="email" type="email" required placeholder="you@example.com" />
+          <button type="submit">Notify me</button>
+        </form>
+        <p class="form-note">
+          Form action is a <strong>Formspree placeholder</strong> (<code>action="#"</code>). Replace with your Formspree
+          endpoint (e.g. <code>https://formspree.io/f/xxxxxx</code>) before going live.
+        </p>
+        <p id="subscribe-feedback" class="form-note hidden" role="status"></p>
+        <p>
+          <a class="rss-link" href="feed.xml">📡 Subscribe via RSS — feed.xml</a>
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav aria-label="Footer">
+        <a href="feed.xml">RSS</a>
+        <a href="data/crashes.json">JSON data</a>
+        <a href="api/README.md">API / schema</a>
+        <a href="admin.html">Admin</a>
+        <a href="README.md">README</a>
+      </nav>
+      <p>Honolulu Crash Feed · Aggregator of public reports · Built for GitHub Pages</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
