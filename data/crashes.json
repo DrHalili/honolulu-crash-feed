@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-05T11:30:00Z",
+  "updatedAt": "2026-09-05T21:52:38Z",
   "timezone": "Pacific/Honolulu",
   "crashes": [
     {
@@ -26,7 +26,43 @@
           "credit": "HPD Traffic Division, Vehicular Homicide Section"
         }
       ],
-      "tags": ["hit-and-run", "pedestrian", "waianae", "farrington"]
+      "tags": [
+        "hit-and-run",
+        "pedestrian",
+        "waianae",
+        "farrington"
+      ]
+    },
+    {
+      "id": "2026-09-04-pearl-city-waimano-critical",
+      "title": "Critical collision in private driveway on Waimano Home Road",
+      "summary": "A 45-year-old female motorist turning left into a private driveway on Waimano Home Road collided with a 30-year-old female motorist exiting the driveway. The 45-year-old was taken to an area hospital in critical condition; the other motorist was not injured. Speed does not appear to be a factor. HPD Vehicular Homicide Section is investigating.",
+      "location": "Private driveway on Waimano Home Road, Pearl City",
+      "area": "Pearl City",
+      "severity": "critical",
+      "crashTime": "2026-09-04T23:40:00Z",
+      "crashTimeHst": "Sep 4, 2026 · 1:40 PM HST",
+      "publishedAt": "2026-09-05T21:50:00Z",
+      "publishedAtHst": "Sep 5, 2026 · listed on HPD Traffic Media",
+      "newsLinks": [
+        {
+          "label": "Honolulu Police Department",
+          "url": "https://www.honolulupd.org/traffic-media/critical-motor-vehicle-collision-150/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "credit": "Honolulu Police Department",
+          "role": "official release"
+        }
+      ],
+      "tags": [
+        "pearl-city",
+        "waimano",
+        "critical",
+        "hpd"
+      ]
     },
     {
       "id": "2026-09-04-h1-waiawa-dump-truck",
@@ -78,7 +114,12 @@
           "credit": "@DOTHawaii traffic update"
         }
       ],
-      "tags": ["h-1", "waiawa", "dump-truck", "traffic"]
+      "tags": [
+        "h-1",
+        "waiawa",
+        "dump-truck",
+        "traffic"
+      ]
     },
     {
       "id": "2026-09-04-university-ave-motorcycle-pedestrian",
@@ -104,7 +145,12 @@
           "credit": "Honolulu EMS"
         }
       ],
-      "tags": ["motorcycle", "pedestrian", "university-avenue", "moiliili"]
+      "tags": [
+        "motorcycle",
+        "pedestrian",
+        "university-avenue",
+        "moiliili"
+      ]
     },
     {
       "id": "2026-09-03-kaneohe-bay-drive-rollover",
@@ -130,7 +176,11 @@
           "credit": "Ancheta, Dillon | HNN"
         }
       ],
-      "tags": ["rollover", "kaneohe", "kaneohe-bay-drive"]
+      "tags": [
+        "rollover",
+        "kaneohe",
+        "kaneohe-bay-drive"
+      ]
     },
     {
       "id": "2026-09-03-kahekili-likelike-pickup-rollover",
@@ -156,7 +206,13 @@
           "credit": "HNN Staff"
         }
       ],
-      "tags": ["rollover", "pickup", "kahekili", "likelike", "kaneohe"]
+      "tags": [
+        "rollover",
+        "pickup",
+        "kahekili",
+        "likelike",
+        "kaneohe"
+      ]
     },
     {
       "id": "2026-09-01-mccully-bingham-fatal-rollover",
@@ -206,7 +262,43 @@
           "credit": "HFD incident release"
         }
       ],
-      "tags": ["fatal", "rollover", "mccully", "bingham"]
+      "tags": [
+        "fatal",
+        "rollover",
+        "mccully",
+        "bingham"
+      ]
+    },
+    {
+      "id": "2026-09-01-ewa-fort-weaver-moped",
+      "title": "Critical moped collision at Fort Weaver Road, Ewa Beach",
+      "summary": "A 57-year-old male moped operator turning left from Renton Road against a red signal was struck by a 29-year-old male motorist on Fort Weaver Road. The moped operator was ejected and taken to an area hospital in critical condition; he was not wearing a helmet. The motorist was not injured.",
+      "location": "Fort Weaver Road at Renton Road, Ewa Beach",
+      "area": "Ewa Beach",
+      "severity": "critical",
+      "crashTime": "2026-09-01T10:59:00Z",
+      "crashTimeHst": "Sep 1, 2026 · 12:59 AM HST",
+      "publishedAt": "2026-09-01T20:00:00Z",
+      "publishedAtHst": "Sep 1, 2026 · HPD Traffic Media",
+      "newsLinks": [
+        {
+          "label": "Honolulu Police Department",
+          "url": "https://www.honolulupd.org/traffic-media/critical-motor-vehicle-collision-149/"
+        }
+      ],
+      "instagramLinks": [],
+      "sources": [
+        {
+          "credit": "Honolulu Police Department",
+          "role": "official release"
+        }
+      ],
+      "tags": [
+        "ewa-beach",
+        "moped",
+        "critical",
+        "hpd"
+      ]
     }
   ]
 }
